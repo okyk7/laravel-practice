@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Hoge;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,6 +13,13 @@
 |
 */
 
+/*
 Route::get('/', function () {
     return view('welcome');
 });
+*/
+
+Route::get('/', 'Index@top');
+Route::get('form', 'Form@top');
+Route::post('form/confirm', 'Form@confirm');
+Route::post('form/complete', 'Form@complete');
