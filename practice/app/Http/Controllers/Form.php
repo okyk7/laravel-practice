@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\FormPost;
+use App\Services\Form\FormService;
 
 /**
  *
@@ -60,7 +61,8 @@ class Form extends Controller
             return redirect('/form?back=1');
         }
 
-
+        $service = new FormService();
+        $service->aa();
     }
 
     /**
