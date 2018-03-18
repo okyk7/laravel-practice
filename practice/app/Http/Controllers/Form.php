@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\FormPost;
 use App\Services\Form\FormService;
+use App\Facade\LibDate;
+use App\Facade\LibDataStore;
 
 /**
  *
@@ -61,8 +63,18 @@ class Form extends Controller
             return redirect('/form?back=1');
         }
 
+        /* サービス呼び出し
         $service = new FormService();
-        $service->aa();
+        $service->test();
+        */
+
+        /* 自作ファサード利用
+        LibDataStore::addData(1);
+        LibDataStore::addData(1);
+        LibDataStore::addData(1);
+        LibDataStore::addData('aa');
+        var_dump(LibDataStore::getData());
+        */
     }
 
     /**

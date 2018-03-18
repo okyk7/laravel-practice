@@ -177,6 +177,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        // 自分の
+        App\Providers\LibServiceProvider::class
+
     ],
 
     /*
@@ -226,6 +229,9 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        // 自分の
+        'LibDate' => App\Facade\LibDate::class,
+        'LibDataStore' => App\Facade\LibDataStore::class
     ],
 
 ];
