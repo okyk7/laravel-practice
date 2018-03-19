@@ -7,6 +7,7 @@ use App\Http\Requests\FormPost;
 use App\Services\Form\FormService;
 use App\Facade\LibDate;
 use App\Facade\LibDataStore;
+use Illuminate\Support\Facades\DB;
 
 /**
  *
@@ -26,7 +27,17 @@ class Form extends Controller
         if ($req->has('back')) {
             $this->flashOldInputToFlash($req);
         }
-        return view('Form.top');
+
+        // 生クエリ
+        $users = DB::select('select * from user');
+
+        // クエリビルダ
+        $users = DB::table('user')->get();
+        $first = DB::table('user')->where('id', 2)->first();
+        var_dump($first);
+
+
+        return view('Form.top')->with(['users' => $users]);
     }
 
     /**
@@ -74,6 +85,23 @@ class Form extends Controller
         LibDataStore::addData(1);
         LibDataStore::addData('aa');
         var_dump(LibDataStore::getData());
+        */
+
+        // 生クエリ
+        $insert = DB::insert('insert into user (name, email, value) values (?, ?, ?)', [
+            $req->session()->getOldInput('name'),
+            $req->session()->getOldInput('email'),
+            $req->session()->getOldInput('value')]
+        );
+        if ($insert) {
+            return redirect('/form');
+        }
+
+        // トランザクション
+        /*
+        DB::beginTransaction();
+        DB::commit();
+        DB::rollback();
         */
     }
 

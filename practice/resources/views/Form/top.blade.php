@@ -26,6 +26,24 @@
                 <input type="submit" />
                 {{csrf_field()}}
             </form>
+
+            <table style="border: 1px solid black;">
+                <tr>
+                    <th>id</th>
+                    <th>name</th>
+                    <th>email</th>
+                    <th>value</th>
+                </tr>
+                @foreach ($users as $user)
+                    <tr>
+                        <td>{{ $user->id }}</td>
+                        <td>{{ $user->name }}</td>
+                        <td>{{ $user->email }}</td>
+                        <td>{{ $user->value }}</td>
+                    </tr>
+                @endforeach
+            </table>
+
         </div>
     </body>
 </html>
